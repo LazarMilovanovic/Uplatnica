@@ -1,0 +1,150 @@
+DONE ---Variables:
+var, let, const
+DONE ---Data types:
+Primitive Types
+string, number, boolean, null, undefined, bigInt
+Reference Types
+Object, Array, Functions
+DONE ---Expressions and Operators
+Ternary operator, Comparison Operators (>, <, >=, <=, ==, ===, !=, !==), Logical Operators (||, &&, !)
+---Loops
+for, while, for... of, for...in, break, continue
+DONE---Conditional statements
+if, else if, else, switch 
+---Functions
+LATER: IIFE,  IMPORTANT: Arrow Functions, LATER: Recursion, LATER: Nested Functions
+DONE---DOM
+LATER ---Strict mode ("use strict", 'use strict')
+LATER ---RegEx
+IMPORTANT---Asynchronous JavaScript 
+Event Loop, Promises, async/await, Callbacks, setTimeout, setInterval
+---API
+fetch
+LATER: ---Classes
+MUCH LATER: ---Iterators and Generators
+LATER: ---Modules
+TODO: ---Local Storage
+IMPORTANT: ---Methods (Array, String, Number, Math, Date, JSON)
+LATER: ---Map i Set
+
+
+Hoisting example:  Kojim redosledom JS ucitava podatke.
+y=6;
+let x = 5;
+function xy = neka funkcija
+let y;
+
+This example:
+
+const hobbies = ['1','2','3'] 
+
+const person = {
+  name: "Marko",
+  hobbies: ["fudbal", "plivanje", "gitara"],
+  showHobbies: function () {
+    this.hobbies.forEach(function(hobby) {
+      console.log(this.name + " voli " + hobby);
+      // ❌ this = undefined ili globalni object, ne person
+    });
+  }
+};
+
+
+
+
+STVARI ZA PROLAZENJE:
+
+TOP PRIORITY:
+- Methods (Array, String, Number, Math, Date, JSON)
+- Array iterable methods (map, filter, some, every, reduce, find). Prouciti i nauciti i dobro izvezbati. Kad se koja koristi. Kako se ponasa (da li menja originalni array i slicno)
+- HTTP Metode (5 najvaznijih)
+- Reference Types Practice (kako se reference types data ponasa prilikom kopiranja, kloniranja ili reimenovanja)
+- Loops - prouciti koji tip loopa je najbolji za koji tip data-e (npr. koji loop za iteraciju kroz objekat)
+- Arrow Functions - znati sintaksu i skracenu sintaksu. Nije prioritet.
+- Asynchronous JavaScript 
+
+TODO AFTER:
+- Hoisting (primer gore)
+- Closures (ToDo za kasnije)
+- Local Storage
+- THIS keyword - kontekst. IMPORTANT. Iscitati sto vise, isprobati. Vise nije toliko u upotrebi zbog arrow fn, ali treba znati.
+
+
+
+
+REGULAR EXPRESSIONS:
+
+var myRegExp = /\b'|'\b/;
+ili uz pomoc konstruktora:
+var myRegExp = new RegExp("\\b'|'\\b","global, ili case-insensitive ili multi");  kod konstruktora mora \\ umesto \, jer se inace jedan crta racuna kao escape karakter, a ne regExp karakter.
+ILI   var regExp = new RegExp(varijabla,"g ILI i");
+dodatni atributi:   G   - global match - trazi zadato kroz ceo string, umesto da pronadje samo prvo sto se slaze i onda stane.
+		    I   - case-insensitive    
+		    M   - multi-line flag  -  
+
+IzrazKojiTrazimo.test(tekstUKojemTrazimo)   -   testira na trazeno u necemu.
+
+NizPronadjenihReci.join(parametarKojiRazdvaja)    -  sve pronadjene reci se skladiste u array sa join i postaju jedan string koji razdvaja samo parametar u zagradi (pa ako je parametar \n svaki clan arraya ce biti u novom redu).
+
+SPECIJALNI KARAKTERI u regular expressions:
+
+\d   - bilo koji broj od 0 do 9
+\D   - bilo sta sto nije cifra (od 0-9)
+\w   - bilo sta od:A-Z,a-z,0-9 i _
+\W   - bilo sta ostalo
+\s   - bilo sta praznog prostora (tab, return itd.)
+\S   - sve ostalo
+.    - sve osim \n(new line)
+[...]- samo ono sto je u zagradi (u ovom slucaju tacke, moze bilo sta drugo)
+[^...] - sve OSIM onoga u zagradi
+
+REPETITION karakteri:
+
+x{n}	-   n puta pronadji x  (x{2} je xx)
+x{n,}    -   n puta ili vise pronadji x  (x{2,}  je xx,xxx,xxxx itd.)
+x{n,m}  -   pronadji x od n do m broja (x{2,4}  je   xx,xxx i xxxx)
+x?    -    pronadji karakter ispred upitnika nijednom ili jednom (x?  je prazno ili x)
+x+    -   pronadji karakter ispred plusa jednom ili vise (x+   je  x,xx,xxx,xxxx itd.)
+x*  -   pronadji karakter ispred zvezdice nijednom ili vise puta  (x* je prazno,x,xx,xxx itd.)
+\w(?= x)     bilo koje slovo koje se nalazi ispred x. 
+/^((?!onoStoSeIzbacuje)onoStoMoze)kolikoPuta$/     =  znaci ?! se stavljaju ispred onoga sto cemo oznaciti da NE SME da bude u tekstu.
+/^((?!\W|_).)*$/; - svi alfanumericki karakteri (ali nista drugo, ukljucujuci i _).
+
+POSITION karakteri:
+Oznacavaju neko mesto u tekstu. Kada se npr. var myRegExp = /\b/g; stavi, oznacice sve delove u tekstu koji su granica izmedju reci. Onda mozemo uraditi 
+var myString =  neki tekst. Pa, myString = myString.replace(myRegExp, "|");
+Tako ce izmedju svake reci granica da bude |.
+
+^   -  sve sa tom oznakom bice na pocetku stringa, ili ako ima vise redova, na pocetku svakog reda. 
+$   -  isto samo na kraju stringa ili reda
+\b  -  granica izmedju svake reci (tacka izmedju karaktera u reci i karaktera van reci)
+\B  -  granica izmedju svega OSIM izmedju reci
+
+()  - zagrade se koriste za grupisanje unutar RegExp.   /(nesto,nesto)/ - ne tretiraju se kao deo regexp.  Pozivanje grupe se vrsi sa $brojGrupe
+|   -  koristi se kao ili u okviru grupisanja u RegExp.
+\+  - oznacava znak plus, ali posto je plus specijalni karakter mora kosa crta da bi se znalo da mislimo na pravi literal plus, a ne na opciju sabiranja ili slicno.
+
+myMatchNiz = varijablaString.match("zeljena rec");    -   kroz string se trazi zadata rec(u zagradi) i skladisti se u novi niz koji sadrzi sve pronadjene zadate reci.//verovatno ide sa reg exp
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
